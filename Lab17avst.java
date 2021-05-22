@@ -88,11 +88,11 @@ class Test
 	// returns the gcf of n1 and n2
 	public static int gcf(int n1, int n2)
 	{
-   if (n2 == 0) 
-      return 1;
-   else 
-      return gcf(n2, n1 % n2);//recursion
-	}		
+       if (n2 == 0) 
+          return n1;
+       else 
+          return gcf(n2, n1 % n2);
+      	}		
    
 	// returns n1 raised to the n2 power
 	public static int pow(int n1, int n2)
