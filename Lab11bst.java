@@ -8,29 +8,66 @@ public class Lab11bst
       
 		System.out.println();     
       Deck deck = new Deck();
-      deck.add("a","Four",4);
-      deck.add("b","Four",4);
-      deck.add("c","Four",4);
-      deck.add("d","Four",4);
-      deck.add("e","Four",4);
-       deck.add("f","Four",4);
-      deck.add("g","Four",4);
-       deck.add("h","Four",4);
-      deck.add("i","Four",4);
-       deck.add("j","Four",4);
-      deck.add("k","Four",4);
+      deck.add("Clubs","Two",2);
+      deck.add("Clubs","Three",3);
+      deck.add("Clubs","Four",4);
+      deck.add("Clubs","Five",5);
+      deck.add("Clubs","six",6);
+       deck.add("Clubs","seven",7);
+      deck.add("Clubs","Eight",8);
+       deck.add("Clubs","Nine",9);
+      deck.add("Clubs","Ten",10);
+       deck.add("Clubs","Jack",10);
+      deck.add("Clubs","Queen",10);
+      deck.add("Clubs","King",10);
+      deck.add("Clubs","Ace",11);
       
       
-      /*
-      there are two notes i put for this lab, the second can be found below
-      by the shuffling method.
-      This note is to say that I do not know if I was required to provide a decktester or anything, since there wasn't
-      any specific instructions on adding anything, so I just commented out the shuffle method below, until 52 cards are added
-      Another thing is that I had to change the Card class toString() method to print output in this format: [Clubs, Two, 2]
-      If, it wasn't allowed at all to change that part of the code, please allow me to redo this lab
-      And if i was supposed to add a decktester, please allow me to redo this lab again
-      Thank you!
-      */
+      deck.add("Diamonds","Two",2);
+      deck.add("Diamonds","Three",3);
+      deck.add("Diamonds","Four",4);
+      deck.add("Diamonds","Five",5);
+      deck.add("Diamonds","six",6);
+       deck.add("Diamonds","seven",7);
+      deck.add("Diamonds","Eight",8);
+       deck.add("Diamonds","Nine",9);
+      deck.add("Diamonds","Ten",10);
+       deck.add("Diamonds","Jack",10);
+      deck.add("Diamonds","Queen",10);
+      deck.add("Diamonds","King",10);
+      deck.add("Diamonds","Ace",11);
+      
+      deck.add("Hearts","Two",2);
+      deck.add("Hearts","Three",3);
+      deck.add("Hearts","Four",4);
+      deck.add("Hearts","Five",5);
+      deck.add("Hearts","six",6);
+       deck.add("Hearts","seven",7);
+      deck.add("Hearts","Eight",8);
+       deck.add("Hearts","Nine",9);
+      deck.add("Hearts","Ten",10);
+       deck.add("Hearts","Jack",10);
+      deck.add("Hearts","Queen",10);
+      deck.add("Hearts","King",10);
+      deck.add("Hearts","Ace",11);
+      
+      deck.add("Spades","Two",2);
+      deck.add("Spades","Three",3);
+      deck.add("Spades","Four",4);
+      deck.add("Spades","Five",5);
+      deck.add("Spades","six",6);;
+       deck.add("Spades","seven",7);
+      deck.add("Spades","Eight",8);
+       deck.add("Spades","Nine",9);
+      deck.add("Spades","Ten",10);
+       deck.add("Spades","Jack",10);
+      deck.add("Spades","Queen",10);
+      deck.add("Spades","King",10);
+      deck.add("Spades","Ace",11);
+      
+      
+      
+ 
       deck.shuffle();
       System.out.println(deck);
       
@@ -45,14 +82,15 @@ class Deck
    private int space = 0;
 	public Deck() 
    {
-      size = 11;
+      size = 52;
 		cards = new Card[size];
 	}    
  
  public String toString(){
     String temp = "";
-    for (int i = 0; i < space; i++)
+    for (int i = 0; i < space; i++){
     temp = temp + cards[i].toString() + "\n";
+}
     return temp;
  }
 /* public void shuffle(){
