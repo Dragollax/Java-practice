@@ -13,10 +13,11 @@ public class Lab15avst
 	{
 		Scanner input = new Scanner(System.in);
 
-      System.out.print("Enter the odd# size of the Magic Square -->  ");
+      System.out.print("Enter the odd # size of the Magic Square -->  ");
       int size = input.nextInt();
+      if(size % 2 != 0){
       MagicSquare magic = new MagicSquare(size);
-
+      
       magic.computeMagicSquare();
       magic.displayMagicSquare();
    	magic.checkRows();          // for 100 & 110 Point Version Only
@@ -24,6 +25,10 @@ public class Lab15avst
    	magic.checkColumns();		 // for 100 & 110 Point Version Only
       System.out.println();
    	magic.checkDiagonals();	 	 // for 100 & 110 Point Version Only
+      }
+      else{
+      System.out.println("It is not possible to create a magic square with an even number, please enter an odd number!");
+      }
 	}
 }
 
@@ -54,22 +59,22 @@ class MagicSquare
     int current_row;
     int current_col;
     while (number <= size * size) {
-     magic[row][column] = number;
-     number++;
-     current_row = row;
-     current_col = column;
-     row -= 1;
-     column +=1;
-     
-     if (row == -1){
-     row = size - 1;
+      magic[row][column] = number;
+      number++;
+      current_row = row;
+      current_col = column;
+      row -= 1;
+      column +=1;
+                     
+         if (row == -1){ //if goes above row
+             row = size - 1;
+   }
+         if (column == size){// if goes beyond column limitation
+             column = 0;
      }
-     if (column == size){
-     column = 0;
-     }
-     if (magic[row][column] != 0) {
-            row = current_row + 1;
-            column = current_col;
+         if (magic[row][column] != 0) {//if following number at given possible is not equal to zero
+             row = current_row + 1; 
+             column = current_col;
           
         }
     }
@@ -97,7 +102,7 @@ class MagicSquare
      
       for (int i = 0; i < size; i++){
             
-           System.out.print (magic[i][0]);
+           System.out.print(output.format(magic[i][0]));
             
           for(int j = 0; j < size; j++){
       
@@ -106,7 +111,7 @@ class MagicSquare
            
            
            if (counttemp < size)
-           System.out.print (" + " + magic[i][counttemp]);
+           System.out.print (" + " + output.format(magic[i][counttemp]));
            else{
           System.out.println(" = " + rowtemp);
           counttemp = 0;
@@ -127,27 +132,20 @@ class MagicSquare
 		System.out.println("Checking Columns");
 		System.out.println("================");
 		System.out.println();
-      int k = 0;
       for (int i = 0; i < size; i++){
        
           for(int j = 0; j < size; j++){
-          System.out.print(magic[j][k]);
-            k += 1;
+          System.out.print(output.format(magic[j][i]));
           
            //swap places with i and j so that it iterates through columns instead of rows
            sum += magic[j][i];
            coltemp = sum;
-
-           if (counttemp < size){
-           System.out.print(" + " + magic[j][i]);
-           }
-           else{
-          System.out.println(" = " + coltemp);
-          counttemp = 0;
-          }
-          counttemp +=1; 
-                 
-           }
+           if(j != size-1)
+           System.out.print(" + ");
+           else
+           System.out.print(" = " + coltemp);
+                      }
+      System.out.println();
            
            sum = 0 ;
       }
@@ -164,38 +162,43 @@ class MagicSquare
 		System.out.println();
       
      
-      for (int i = size - 1 ; i > -1; i--){
-            
-          for(int j = size -1; j > -1; j--){
+      for (int i = 0, j= size-1; i < size; i++){
+          
            sum += magic[i][j];
            ditemp = sum;
-           }
-           System.out.print(ditemp + " ");
-           sum = 0 ;
+           System.out.print(output.format(magic[i][j]));
+           j--;
+           if(i != size-1)
+           System.out.print(" + ");
+           else
+           System.out.print(" = " + ditemp);
+
+      }
+      
+      sum = 0;
+
+      System.out.println();
+ 
+  for (int i = 0, j= 0; i < size; i++){
+          
+           sum += magic[i][j];
+           ditemp = sum;
+           System.out.print(output.format(magic[i][j]));
+           
+           j++;
+           if(i != size-1)
+           System.out.print(" + ");
+           else
+           System.out.print(" = " + ditemp);
+
+      }
+      
+
+      System.out.println();
+      
+      
       }
 
-	}
    
 }
 
-/*
-   magic[row][column] = number;
-        number++;
-        current_row = row;
-        current_col = column;
-        row -= 1;
-        column += 1;
-        //if row goes above top row
-        if (row == -1) {
-            row = size - 1;
-        }
-        //if column goes beyond right side limit
-        if (column == size) {
-            column = 0;
-        }
-        
-        if (magic[row][column] != 0) {
-            row = current_row + 1;
-            column = current_col;
-            
-*/
