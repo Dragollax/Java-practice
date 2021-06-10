@@ -96,20 +96,22 @@ class MagicSquare
 		System.out.println();
      
       for (int i = 0; i < size; i++){
+            
            System.out.print (magic[i][0]);
             
           for(int j = 0; j < size; j++){
       
            sum += magic[i][j];
            rowtemp = sum;
-           counttemp +=1;
            
            
            if (counttemp < size)
            System.out.print (" + " + magic[i][counttemp]);
-           else
-          System.out.println();
-          
+           else{
+          System.out.println(" = " + rowtemp);
+          counttemp = 0;
+          }
+          counttemp +=1;
           
            }
            
@@ -125,16 +127,28 @@ class MagicSquare
 		System.out.println("Checking Columns");
 		System.out.println("================");
 		System.out.println();
-      
+      int k = 0;
       for (int i = 0; i < size; i++){
-           
-            
+       
           for(int j = 0; j < size; j++){
-           //swap places wiht i and j so that it iterates through columns instead of rows
+          System.out.print(magic[j][k]);
+            k += 1;
+          
+           //swap places with i and j so that it iterates through columns instead of rows
            sum += magic[j][i];
            coltemp = sum;
+
+           if (counttemp < size){
+           System.out.print(" + " + magic[j][i]);
            }
-           System.out.print(coltemp + " ");
+           else{
+          System.out.println(" = " + coltemp);
+          counttemp = 0;
+          }
+          counttemp +=1; 
+                 
+           }
+           
            sum = 0 ;
       }
 
