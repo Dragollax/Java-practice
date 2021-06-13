@@ -107,24 +107,17 @@ public class Picture extends SimplePicture
       // REQUIRED FOR 80-POINTS
       public void grayScale()
       {
-      Pixel[][] pixels = this.getPixels2D();
- Pixel pixel = null;
- int total = 0;
- int average = 0;
- for (int row = 0; row < pixels.length; row++)
- {
- for (int col = 0; col < pixels[0].length; col++)
- {
- total = 0;
- pixel = pixels[row][col];
- total = total + pixel.getRed();
- total = total + pixel.getGreen();
- total = total + pixel.getBlue();
- average = total / 3;
- pixel.setColor(new Color(average, average, average));
- }
- }
-   
+         for(int i = 0; i < getHeight(); i++) {          
+            for(int j = 0; j < getWidth(); j++) {
+            
+               Pixel pixel = new Pixel(this, j, i);
+               int newGray = (int)pixel.getAverage();
+               Color grayColour = new Color(newGray, newGray, newGray);
+               pixel.setColor(grayColour);
+            
+            }
+            
+         }
       }
   
 //////////////////////////////////////////////////////////////////////////  
@@ -132,92 +125,94 @@ public class Picture extends SimplePicture
       // REQUIRED FOR 80-POINTS
       public void mirror()
       {  
-       Pixel[][] pixels = this.getPixels2D();
- Pixel leftPixel = null;
- Pixel rightPixel = null;
- int width = pixels[0].length;
- for (int row = 0; row < pixels.length; row++)
- {
- for (int col = 0; col < width / 2; col++)
- {
- leftPixel = pixels[row][col];
- rightPixel = pixels[row][width -1]; 
- leftPixel.setColor(rightPixel.getColor());
- }
- }   } 
-           
-              }
-  /*    
+         for(int i = 0 ; i < getHeight(); i++) {   
+             for(int j = 0; j < getWidth()/2; j++) {
+               Pixel leftpix = new Pixel(this, j, i);
+               Pixel rightpix = new Pixel(this, getWidth() - j - 1, i);           
+               Color colour1 = leftpix.getColor();
+               Color colour2 = rightpix.getColor();
+               leftpix.setColor(colour2);
+               rightpix.setColor(colour1);
+            }
+            
+         }
+      } 
+      
 ////////////////////////////////////////////////////////////////////////////////////////
 
       // REQUIRED FOR 80-POINTS
       public void upsideDown()
       {  
-      }
-      
-      }    
-      
+         for(int i = 0; i < getWidth(); i++) {     
+            for(int j = 0; j < getHeight() / 2; j++) {
+            
+               Pixel toppix = new Pixel(this, i, j);
+               Pixel botpix = new Pixel(this, i, getHeight() - j - 1);
+               Color colour1 = toppix.getColor();
+               Color colour2 = botpix.getColor();
+               toppix.setColor(colour2);
+               botpix.setColor(colour1);
+            
+            }
+            
+         }
+      }     
 //////////////////////////////////////////////////////////////////////////////////////////
 
    // REQUIRED FOR 90-POINTS
-   public void mirrorVertical()
+  public void mirrorVertical()
    { 
-  Pixel[][] pixels = this.getPixels2D();
- Pixel leftPixel = null;
- Pixel rightPixel = null;
- int width = pixels[0].length;
- for (int row = 0; row < pixels.length; row++)
- {
- for (int col = 0; col < width / 2; col++)
- {
- leftPixel = pixels[row][col];
- rightPixel = pixels[row][width - col - 1];
- leftPixel.setColor(rightPixel.getColor());
+      Pixel[][] pixels = this.getPixels2D();
+      Pixel leftpix;
+      Pixel rightpix;
+      int width = pixels[0].length;
+      for (int row = 0; row < pixels.length; row++){
+         for (int col = 0; col < width / 2; col++){
+               leftpix = pixels[row][col];
+               rightpix = pixels[row][width - col - 1];
+               leftpix.setColor(rightpix.getColor());
+         }
+      }    
  }
- }    }
    
 //////////////////////////////////////////////////////////////////////////////////
    
    // REQUIRED FOR 90-POINTS
    public void mirrorHorizontal()
    {
-  Pixel[][] pixels = this.getPixels2D();
- Pixel topPixel = null;
- Pixel botPixel = null;
- int height = pixels.length;
- for (int row = 0; row < height / 2; row++)
- {
- for (int col = 0; col < pixels[0].length; col++)
- {
- topPixel = pixels[row][col];
- botPixel = pixels[height - row - 1][col];
- botPixel.setColor(topPixel.getColor());14
- }
- } 
-  
-   }
+    Pixel[][] pixels = this.getPixels2D();
+    Pixel toppix;
+    Pixel basepix;
+    int height = pixels.length;
+    for (int row = 0; row < height / 2; row++){
+       for (int col = 0; col < pixels[0].length; col++)
+       {
+          toppix = pixels[row][col];
+          basepix = pixels[height - row - 1][col];
+          basepix.setColor(toppix.getColor());
+       }
+    } 
+  }
       
 //////////////////////////////////////////////////////////////////////////////////////////////////      
     
    // REQUIRED FOR 90-POINTS
    public void mirrorDiagonal()
    { 
-   Pixel[][] pixels = this.getPixels2D();
- Pixel leftPixel = null;
- Pixel rightPixel = null;
+       Pixel[][] pixels = this.getPixels2D();
+       Pixel leftpix;
+       Pixel rightpix;
  
- int max = pixels.length;
- if (pixels[0].length < max)
- max = pixels[0].length;
+       int max = pixels.length;
+       if (pixels[1].length < max)
+       max = pixels[1].length;
  
-  for (int row = 1; row < max; row++)15
- {
- for (int col = 0; col < row; col++)
- {
- leftPixel = pixels[row][col];
- rightPixel = pixels[col][row];
- rightPixel.setColor(leftPixel.getColor());
- }
+       for (int row = 1; row < max; row++){
+            for (int col = 0; col < row; col++){
+                leftpix = pixels[row][col];
+                rightpix = pixels[col][row];
+                rightpix.setColor(leftpix.getColor());
+          }
  }
    
    }
@@ -227,23 +222,18 @@ public class Picture extends SimplePicture
    // REQUIRED FOR 100-POINTS
    public void mirrorTemple()
    { 
-   int mirrorPoint = 276;
- Pixel leftPixel = null;
- Pixel rightPixel = null;
- int count = 0;
- Pixel[][] pixels = this.getPixels2D();
- 
- // loop through the rows
- for (int row = 27; row < 97; row++)
- {
- // loop from 13 to just before the mirror point
- for (int col = 13; col < mirrorPoint; col++)
- {
- count++;
- leftPixel = pixels[row][col]; 
- rightPixel = pixels[row][mirrorPoint - col + 
- mirrorPoint];
- rightPixel.setColor(leftPixel.getColor());
+    int cord = 275;
+    Pixel leftpix;
+    Pixel rightpix;
+    int count = 0;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    for (int row = 28; row < 97; row++) {
+      for (int col = 12; col <cord; col++){
+            count++;
+            leftpix = pixels[row][col]; 
+            rightpix = pixels[row][cord - col + cord];
+            rightpix.setColor(leftpix.getColor());
  }
  }
  
@@ -251,4 +241,4 @@ public class Picture extends SimplePicture
    }
    
 } 
-*/
+

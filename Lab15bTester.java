@@ -34,25 +34,23 @@ public class Lab15bTester
    public static void main(String[] args)
    {
       test80Points();
-      //test90Points();
-      //test100Points();
+      test90Points();
+      test100Points();
    }
 
 
    public static void test80Points()
    {
       Picture pix = new Picture("beach.jpg");
-   
       pix.explore();
-      //pix.grayScale();
-     // pix.explore();
+      pix.grayScale();
+      pix.explore();
       pix.mirror();
       pix.explore();
-      //pix.upsideDown();
-      //pix.explore();
+      pix.upsideDown();
+      pix.explore();
    }
-   }
-   /*
+   
    public static void test90Points()
    {
       Picture pix1 = new Picture("motorcycle.jpg");
@@ -66,6 +64,7 @@ public class Lab15bTester
       pix3.mirrorDiagonal();
       pix3.explore();
    }
+   
 
    public static void test100Points()
    {
@@ -76,4 +75,3 @@ public class Lab15bTester
    }
       
 }
-*/
