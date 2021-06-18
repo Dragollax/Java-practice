@@ -276,16 +276,16 @@ public class ElevensBoard
 		/* *** TO BE IMPLEMENTED IN LAB16 *** */
       if(selectedCards.size() < 2) //check if there is two cards in total
          return false;
-      Card c1, c2;
+      Card card1, card2;
       for (int i = 0; i< selectedCards.size(); i++){
-         c1 = cards[selectedCards.get(i)];
+         card1 = cards[selectedCards.get(i)];
          
          if(selectedCards.size() > i + 1){
         
             for (int j = i  +1 ; j< selectedCards.size(); j++){
-               c2 = cards[selectedCards.get(j)];
+               card2 = cards[selectedCards.get(j)];
                
-               if(c1.pointValue() + c2.pointValue() == 11)
+               if(card1.pointValue() + card2.pointValue() == 11)
                   return true;
          } 
       
