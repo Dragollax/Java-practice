@@ -4,6 +4,8 @@
 import java.awt.*;
 import javax.swing.*;
 import java.lang.Math;
+import java.util.Random;
+
 public class lab06st extends JPanel
 {
  public static void main(String[] args)
@@ -26,7 +28,7 @@ public class lab06st extends JPanel
 		g.drawLine(400,10,400,590);
 		g.drawLine(10,300,790,300);
 		
-		
+		/*
 		
 		// Draw Random Squares
       for (int k = 1; k <= 200; k++)
@@ -73,9 +75,30 @@ public class lab06st extends JPanel
 
 
 
-		
+		*/
 		// Draw 3-D Box
-	   
+      
+Random rnd = new Random(1234);
+for (int count = 1; count <= 1000; count++)
+{
+	int red = rnd.nextInt(256);
+	int green = rnd.nextInt(256);
+	int blue = rnd.nextInt(256);
+	g.setColor(new Color(red,green,blue));
+	int x1 = rnd.nextInt(800);
+	int y1 = rnd.nextInt(600);
+	int x2 = rnd.nextInt(800);
+	int y2 = rnd.nextInt(600);
+	int diameter = rnd.nextInt(200);
+	int shape = 3;
+	
+	switch (shape)
+	{
+		case 0 : g.drawLine(x1,y1,x2,y2); break;
+		case 1 : g.fillRect(x1,y1,50,50); break;
+		case 2 : g.fillOval(x1,y1,diameter,diameter);
+	}
+}
 	   }
 	
 	}
