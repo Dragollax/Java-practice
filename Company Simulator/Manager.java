@@ -93,7 +93,7 @@ public class Manager{
          }
    }
    //method 5
-   public void FireEmployee(int id){
+   public void FireEmployee(int id, CEO enteredCEO){
       String response;
       int entered_id = id;
       System.out.println("Are you sure you wish to fire this Employee?");
@@ -104,6 +104,12 @@ public class Manager{
       if(response.toLowerCase().equals("yes")){//1
          while(count < employees.size() && found == false){//2
             if(employees.get(count).id == entered_id){//3
+               for(int i = 0; i < enteredCEO.TotalEmployees.size(); i++){
+                  if(enteredCEO.TotalEmployees.get(i) == employees.get(count)){ //will remove all Employees associated with this manager
+                     enteredCEO.TotalEmployees.remove(i);  
+                     
+                  }
+               }
                employees.remove(count);
                System.out.println("You have fired this employee!");
 
@@ -120,13 +126,14 @@ public class Manager{
      }
      else{
       System.out.println("You must enter yes or no, please try again");
-      FireEmployee(entered_id); //recursion
+      FireEmployee(entered_id, enteredCEO); //recursion
      }
    
    
    
    
    }
+   //method 6
    public void CheckProfile(){
       System.out.println("Salary : " + salary);
       System.out.println("Name : " + name);

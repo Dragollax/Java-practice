@@ -17,7 +17,7 @@ public class CEO{
       Manager newManager = new Manager(enteredname, enteredsalary, name2);
       managers.add(newManager);
       
-      System.out.println("You have successfully hired " + enteredname + " with a salary of " + enteredsalary);
+      System.out.println("You have successfully hired " + enteredname + " with an ID of " + newManager.id);
    }
    public void AddTotalEmployee(Employee newEmployee){
       TotalEmployees.add(newEmployee);
@@ -52,10 +52,10 @@ public class CEO{
          while(count < managers.size() && found == false){//2
             if(managers.get(count).id == entered_id){ //3
                Manager tempMan = new Manager();
-               tempMan = manager.get(count);
-               for(int i = 0; i < tempman.employees.size(); i++){
+               tempMan = managers.get(count);
+               for(int i = 0; i < tempMan.employees.size(); i++){
                   for(int j = 0; j < TotalEmployees.size(); j++){
-                     if(TotalEmployees.get(j) == tempman.employees.get(i)){ //will remove all employees associated with this manager
+                     if(TotalEmployees.get(j) == tempMan.employees.get(i)){ //will remove all employees associated with this manager
                         TotalEmployees.remove(j);  
                      }
                   }
@@ -77,7 +77,7 @@ public class CEO{
      }
           else{
                System.out.println("You must enter yes or no, please try again");
-               FireManager(entered_id, manageremployees); //recursion
+               FireManager(entered_id); //recursion
      }
    
    
@@ -85,7 +85,7 @@ public class CEO{
    
    
    }
- 
+   //method 5
    public void AllEmployees(){
       System.out.println("Displaying all employee IDs in the whole company(excluding managers): ");
       for(int i = 0; i < TotalEmployees.size(); i++){
