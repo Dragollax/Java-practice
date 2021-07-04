@@ -4,7 +4,10 @@
    Name: Car Builder
    Point version: 110 
       The project has 3 examples of inheritance, over 3 examples of composition, and passes parameters from lowest subclass to highest superclass
-   
+   How it works:
+      The program will prompt you to enter 1 or 2 to build a tesla or bmw. 
+         For tesla:
+            It will ask you to 
 */
 
 
