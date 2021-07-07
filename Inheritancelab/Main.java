@@ -7,7 +7,12 @@
    How it works:
       The program will prompt you to enter 1 or 2 to build a tesla or bmw. 
          For tesla:
-            It will ask you to 
+            It will ask you to enter an engine brand(gibberish will do), a battery brand, the number of windows, the number of wheels, and the carrying capacity
+         For BMW: 
+            It will ask you the same thing, except instead of a battery brand, it will ask you to select gas quality
+       After that, you will have two options: 1- an output of how the classes interact with each other 2- edit any part of the car
+       And that is the entire lab, it does satisfy the 110 point version of the lab, even though it is not using graphics, as I was granted the permission to 
+       make labs that demonstrate my learning otherwise instead of using graphics 
 */
 
 
