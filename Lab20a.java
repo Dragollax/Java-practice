@@ -172,7 +172,7 @@ class Lab20a
     public static void main (String[] args)
     {
 
-        int[] array = { 3, 4, 5, 3, 0, 0, 0, 2, 3, 5, 4, -5, -10, -10, -5 };
+        int[] array = { 3, 4, 5, 3, 0, 0, 0, 2, 3, 5, 4, -5, -10, -10, -5, 9 , 10, 100, 20, 3 };
 
         FindMaxProduct(array);
         MoveZerosToEnd(array);
