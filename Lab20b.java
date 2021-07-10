@@ -53,7 +53,7 @@ public class Lab20b
       
       int pivot = array[end]; //select pivot as end number in array
       
-      int i = (start - 1); //counter 
+      int i = start - 1; //counter 
       for(int j = start; j < end; j++){
       //compare j with pivot, move one to left if smaller, do nothing if larger
          if(array[j] < pivot ){
