@@ -43,7 +43,7 @@ public class Lab21a
       System.out.println("Finding sorted triplet in array " + Arrays.toString(array) + "...");
       Tuple<Integer, Integer, Integer> triplet = SubClass.FindTriplet(array);
       
-      if(triplet != null){         
+      if(triplet != null){          
        System.out.println("The triplets are " + triplet.first + " " + triplet.second + " " + triplet.third + " ");
       
       }      
