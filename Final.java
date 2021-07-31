@@ -2,6 +2,10 @@ import java.io.*;
 import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Stack;
+
 /*
    Lab 22 final
    Point version: Aimed for highest possible
@@ -29,7 +33,13 @@ public class Final
         }
         char[] pattern = "1?11?00?1?".toCharArray();
         lab.FindAllComb(pattern, 0);
+        System.out.println(lab.FindPBalance("((()()"));
+        String s = "Reverse me";
+ 
+        s = lab.Reverse(s);
+        System.out.println(s);
     }
+    
 	}
 
 class lab{
@@ -118,5 +128,92 @@ class lab{
       FindAllComb(pattern, i + 1);
     
     }
+    public static int FindPBalance(String str){
+     
+      Stack<Integer> stack = new Stack<>();
+      
+      stack.push(-1);
+      
+      int len = 0;
+      
+      for(int i = 0; i < str.length(); i++){
+         
+         if(str.charAt(i) == '('){
+            //push the value in the stack
+            stack.push(i);
+         }
+         //if its a closing parenthesis
+         else{
+         //remove previous opening parenthesis from stack
+            stack.pop();
+            
+            if(stack.empty()){
+               stack.push(i);
+               continue;
+            }
+            
+            //longest balanced parenthesis ending at current character, which is top of stack
+            int clen = i - stack.peek();
+            
+            //update the length if clen is longer
+            if(len < clen){
+               len = clen;
+            }
+         }
+      }
+      return len;
+    }
+    
+    public static String Reverse(String str){
+      
+      Stack <Character> stack = new Stack<>();
+      
+      char[] c = str.toCharArray();
+      for(char s: c){
+         stack.push(s);
+      }  
+      
+      for(int i = 0; i < str.length(); i++){
+         //take the first element from the stack and put it into the char array
+         c[i] = stack.pop();
+      }
+      
+      //convert back to string and return
+      return new String(c);
+    }
+    
+    public static boolean Isomorphic(String i, String j){
+      if(i.length() != j.length(){
+         return false;   
+      }
+      Map<Character, Character> map = new HashMap<>();
+      
+      Set<Character> set = new HashSet<>(); //no duplicates!
+      
+      for(int i = 0; i < i.length(); i++){
+         char x = i.charAt(i);
+         char y = j.charAt(i);
+         
+         //if character x has been seen before
+         if(map.containsKey(x)){
+            //if the character x is not the same as character y
+            if(map.get(x) != y){
+               return false;
+            }
+         
+         }
+         //if x hasnt been seen
+         else{
+            //if y has already been seen, it means that its already linked to a char in string i
+            if(set.contains(y)){
+               return false;
+            }
+            
+            map.put(x, y);
+            set.add(y);
+         
+         }
+         
+      }
     
 }
