@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Stack;
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.Scanner;
 
 /*
    Lab 22 final
@@ -15,37 +16,61 @@ import java.util.Queue;
       For this final project, I wished to demonstrate my skills as I increased the difficulty of the lab once more. This time, I learnt
    and experimented with a lot of things. This final project took me a much longer time to do than the other previous labs as the level
    of difficulty was increased by quite a bit, as I approached new famous problem sets, new algorithms, and new built in functions offered
-   by java such as the "stack" and sets.
+   by java such as the "stack" and sets. The length of this project is more than 2x the length of the previous labs I have submitted. As for
+   the difficulty, a lot of these algorithms were greatly more difficult than the previous algorithms I have written. One reason for which
+   was because I challenged myself with 2d arrays/matrix algorithms. It involved intuitive ways of solving a problem that took me hours to 
+   figure and code out
 */
 
 
 public class Final
 {
 	public static void main(String[] args) {
-		  String str = "codesleepcode";
-        String pat = "XYX";
- 
-        // create a map to store mappings between the pattern and string
-        Map<Character, String> map = new HashMap<>();
- 
-        // check for solution
-        if (lab.StringPat(str, 0, pat, 0, map))
-        {
-            for (Map.Entry<Character, String> entry: map.entrySet()) {
-                System.out.println(entry.getKey() + ": " + entry.getValue());
-            }
-        }
-        else {
-            System.out.println("Solution doesn't exist");
-        }
-        char[] pattern = "1?11?00?1?".toCharArray();
-        lab.FindAllComb(pattern, 0);
+        System.out.println("Welcome to Kevin's Final Lab! The following are options to see what you can do here! Type 8 to exit the lab!");
+        System.out.println("1-Manipulate a string so that it matches a given pattern 2- find out how many binary combinations there can be by replacing a ? in a given string");
+        System.out.println("3 - find the longest balanced parenthesis pair in a given string 4- reverse a string using the stack");
+        System.out.println("5- Check if two strings are isomorphic 6- check if you can match two strings by inserting a single character");
+        System.out.println("7- Check if a string interleaves two substrings 8- find the minimum number of deletions to change string into a palindrome");
+        System.out.println("9- check if an array can be partitioned to add up to the same value");
+        Scanner next = new Scanner(System.in);
+        int input = next.nextInt();
+        while(input != 0){
+        switch(input){
+        case 1:
+           
+           String str = "codesleepcode";
+           String pat = "XYX";
+    
+           // create a map to store mappings between the pattern and string
+           Map<Character, String> map = new HashMap<>();
+    
+           // check for solution
+           if (lab.StringPat(str, 0, pat, 0, map))
+           {
+               for (Map.Entry<Character, String> entry: map.entrySet()) {
+                   System.out.println(entry.getKey() + ": " + entry.getValue());
+               }
+           }
+           else {
+               System.out.println("Solution doesn't exist");
+           }
+           input = next.nextInt();
+           break;
+        case 2:
+           char[] pattern = "1?11?00?1?".toCharArray();
+           lab.FindAllComb(pattern, 0);
+           input = next.nextInt();
+           break;
+           
+        case 3:
         System.out.println(lab.FindPBalance("((()()"));
         String s = "Reverse me";
  
         s = lab.Reverse(s);
         System.out.println(s);
- 
+        input = next.nextInt();
+        break;
+        case 4:
         String X = "ACAB";
         String Y = "XCXY";
  
@@ -55,20 +80,54 @@ public class Final
         else {
             System.out.println(X + " and " + Y + " are not Isomorphic");
         }
-        System.out.println(lab.CheckString("xyz", "xz"));     // true
-        System.out.println(lab.CheckString("xyz", "xxx"));    // false
+        input = next.nextInt();
+        break;
+        case 5 :
+           System.out.println(lab.CheckString("xyz", "xz"));     // true
+           System.out.println(lab.CheckString("xyz", "xxx"));    // false
+           input = next.nextInt();
+           break;
+        case 6:
+           String n = "ABC";
+           String k = "DEF";
+           String string = "ADEBCF";
+           Map<String, Boolean> m = new HashMap<>();
+           if (lab.Interleaves(n, k, string, m)) {
+               System.out.println("Given string is an interleaving of X and Y");
+           }
+           else {
+               System.out.println("Given string is not interleaving of X and Y");
+           }
+           input = next.nextInt();
+           break;
+        case 7:
+           String a = "GeeksforGeeks";
+           String b = "Gks";
         
-        String n = "ABC";
-        String k = "DEF";
-        String string = "ADEBCF";
-         
-        Map<String, Boolean> m = new HashMap<>();
-        if (lab.Interleaves(n, k, string, m)) {
-            System.out.print("Given string is an interleaving of X and Y");
+           System.out.println(lab.CountString(a, b));
+           String lol = "ACBCDBAA";
+           int len = lol.length();
+    
+           System.out.println("The minimum number of deletions required is " +
+                                   lab.MinDel(lol, len));
+           input = next.nextInt();                        
+           break;
+        case 8:
+           int[] Arr = { 7, 3, 1, 5, 4, 8 };
+    
+           if (lab.partition(Arr)) {
+               System.out.println("Set can be partitioned");
+           }
+           else {
+               System.out.println("Set cannot be partitioned");
+           }
+           input = next.nextInt();
+           break;
+        default:
+           input = next.nextInt();
         }
-        else {
-            System.out.print("Given string is not interleaving of X and Y");
         }
+
     }
     
     
@@ -390,14 +449,53 @@ class lab{
                
                }
                else{
-                //if they don't match, set the current position as either 
-                // i - 1 or j - 1 according to which is bigger, which
-                //should result in containing the longest sequence
-                matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1]);
+                   //if they don't match, set the current position as either 
+                   // i - 1 or j - 1 according to which is bigger, which
+                   //should result in containing the longest sequence
+                   matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1]);
                }
             
             }
          }
-      
+       return n - matrix[n][n];
       }
+     
+     //same dynamic programming concept, except dealing with booleans this time
+     
+     public static boolean FindSubset(int[] array, int len, int sum){
+        //matrix will store true in a cell if we reach a sum that can be sum j
+        boolean[][] matrix = new boolean[len + 1][sum + 1];
+        //make the first value of every row true for base condition
+        for(int i = 0; i <= len; i++){
+           matrix[i][0] = true;
+        }
+        
+        for(int i = 1; i <=len; i++){
+           for(int j = 1; j <= sum; j++){
+              
+              //dont include the i'th element of the array if following j is smaller
+              if(array[i - 1] > j){
+                 matrix[i][j] = matrix[i-1][j];
+              }
+              else{
+                 //find subset with sum j by excluding or including the i'th element, which
+                 //should be a value with "true," given that we made the first value of each 
+                 //row of the matrix to be "true"
+                 matrix[i][j] = matrix[i - 1][j] || matrix[i - 1][j - array[i-1]];
+              }
+           }
+        
+        }
+        //return value at bottom right corner
+        return matrix[len][sum];
+        
+     
+     }
+     
+      public static boolean partition(int[] A){
+        int sum = Arrays.stream(A).sum();
+ 
+        //return true if sum is even, and can be split into two equal sum sub arrays
+        return (sum & 1) == 0 && FindSubset(A, A.length, sum/2);
+    }
 }
