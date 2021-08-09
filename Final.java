@@ -19,7 +19,27 @@ import java.util.Scanner;
    by java such as the "stack" and sets. The length of this project is more than 2x the length of the previous labs I have submitted. As for
    the difficulty, a lot of these algorithms were greatly more difficult than the previous algorithms I have written. One reason for which
    was because I challenged myself with 2d arrays/matrix algorithms. It involved intuitive ways of solving a problem that took me hours to 
-   figure and code out
+   figure and code out. It took many hours of frustration, thinking, and excitement to figure out ways to code and debug the programs that 
+   I wrote for this project. Overall, this was a great final project that reflected the many ways I have learnt and (kind of) mastered java. 
+   This final project can be compared to when I first started doing labs in AP Computer Science A to see an extreme improvement in programming. 
+   I have learnt a lot through this course, and am grateful for all the opportunities I was given to practice programming. 
+   Thank you! - Kevin Zhang
+   
+   Guide:
+   1 - Enter a string, then a pattern, the program will see if it is possible to match the string to the given pattern
+   2 - Given a binary char array with 1's and 0's, there will be a few ?'s which will be replaced with either 1 or 0. The program will calculate
+   the total possible combinations of arrays there can be. This one was not made for user input because of the chaos it could cause, and there 
+   wasn't really a necessity in doing so
+   3 - Given a string of parenthesis e.g. ()()()()))(((, The program will find the greatest number of balanced parenthesis. In this case, 8
+   4 - Reverse a string, but using the stack instead of recursion or iteration like normally
+   5 - Enter two strings, the program will find if they are isomorphic or not
+   6 - Given two strings, the program will find if they can be made identical by inserting a single character. 
+   7 - Given 3 strings (2 of which are substrings), see if the first two strings are interleaving of the third string. E.g. String ABC and string 
+   DEF are interleaving of the string ABCDEF
+   8 - Given two strings, check how many times the second string appears in the first string
+   9 - Given a string, see how many deletions are required to make it a palindrome
+   10 - Check if an array can be partitioned(split) to add up to the same value on both sides
+   
 */
 
 
@@ -27,19 +47,21 @@ public class Final
 {
 	public static void main(String[] args) {
         System.out.println("Welcome to Kevin's Final Lab! The following are options to see what you can do here! Type 8 to exit the lab!");
-        System.out.println("1-Manipulate a string so that it matches a given pattern 2- find out how many binary combinations there can be by replacing a ? in a given string");
+        System.out.println("1- See if a string can match a specific pattern 2- find out how many binary combinations there can be by replacing a ? in a given string");
         System.out.println("3 - find the longest balanced parenthesis pair in a given string 4- reverse a string using the stack");
         System.out.println("5- Check if two strings are isomorphic 6- check if you can match two strings by inserting a single character");
-        System.out.println("7- Check if a string interleaves two substrings 8- find the minimum number of deletions to change string into a palindrome");
-        System.out.println("9- check if an array can be partitioned to add up to the same value");
+        System.out.println("7- Check if a string interleaves two substrings 8- check how many times a given string appears in another string");
+        System.out.println("9- find the minimum number of deletions to change string into a palindrome 10- check if an array can be partitioned to add up to the same value");
         Scanner next = new Scanner(System.in);
         int input = next.nextInt();
         while(input != 0){
         switch(input){
         case 1:
-           
-           String str = "codesleepcode";
-           String pat = "XYX";
+           Scanner one = new Scanner(System.in);
+           System.out.println("Enter a String");
+           String str = one.nextLine();
+           System.out.println("Enter a pattern you want to match the string to");
+           String pat = one.nextLine();
     
            // create a map to store mappings between the pattern and string
            Map<Character, String> map = new HashMap<>();
@@ -52,88 +74,151 @@ public class Final
                }
            }
            else {
-               System.out.println("Solution doesn't exist");
+               System.out.println("This string can't be matched with this pattern!");
            }
+           lab.PrintDirections();
            input = next.nextInt();
            break;
         case 2:
+           System.out.println("This one was not made to be user input because of the chaos it creates if not done properly");
+           System.out.println("The default binary pattern is: 1?11?00?1?");
            char[] pattern = "1?11?00?1?".toCharArray();
            lab.FindAllComb(pattern, 0);
+           lab.PrintDirections();
            input = next.nextInt();
            break;
            
         case 3:
-        System.out.println(lab.FindPBalance("((()()"));
-        String s = "Reverse me";
+        Scanner three = new Scanner(System.in);
+        System.out.println("Enter a few pairs of parenthesis");
+        String para = three.nextLine();
+        System.out.println("The longest number of balanced parenthesis is " + lab.FindPBalance(para));
+        lab.PrintDirections();
+        input = next.nextInt();
+
+        case 4:
+        Scanner four = new Scanner(System.in);
+        System.out.println("Enter a string to reverse");
+        String reverse = four.nextLine();
  
-        s = lab.Reverse(s);
-        System.out.println(s);
+        reverse = lab.Reverse(reverse);
+        System.out.println(reverse);
+        lab.PrintDirections();
         input = next.nextInt();
         break;
-        case 4:
-        String X = "ACAB";
-        String Y = "XCXY";
- 
+        case 5:
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the first string");
+        String X = in.nextLine();
+        System.out.println("Enter the second string");
+        String Y = in.nextLine();
         if (lab.Isomorphic(X, Y)) {
             System.out.println(X + " and " + Y + " are Isomorphic");
         }
         else {
             System.out.println(X + " and " + Y + " are not Isomorphic");
         }
+        lab.PrintDirections();
         input = next.nextInt();
         break;
-        case 5 :
-           System.out.println(lab.CheckString("xyz", "xz"));     // true
-           System.out.println(lab.CheckString("xyz", "xxx"));    // false
-           input = next.nextInt();
-           break;
         case 6:
-           String n = "ABC";
-           String k = "DEF";
-           String string = "ADEBCF";
-           Map<String, Boolean> m = new HashMap<>();
-           if (lab.Interleaves(n, k, string, m)) {
-               System.out.println("Given string is an interleaving of X and Y");
+           Scanner six = new Scanner(System.in);
+           System.out.println("Enter the first string");
+           String onee = six.nextLine();
+           System.out.println("Enter the second string");
+           String two = six.nextLine();           
+           if(lab.CheckString(onee, two)){
+               System.out.println("you can match the following entered string by just inserting one char");
            }
-           else {
-               System.out.println("Given string is not interleaving of X and Y");
+           else{
+               System.out.println("you cannot match the following entered string by just inserting one char");
+
            }
+           lab.PrintDirections();
            input = next.nextInt();
            break;
         case 7:
-           String a = "GeeksforGeeks";
-           String b = "Gks";
+           Scanner seven = new Scanner(System.in);
+           System.out.println("Enter the first string");
+           String n = seven.nextLine();
+           System.out.println("Enter the second string");
+           String k = seven.nextLine();
+           System.out.println("Enter the general string");
+           String string = seven.nextLine();
+           Map<String, Boolean> m = new HashMap<>();
+           if (lab.Interleaves(n, k, string, m)) {
+               System.out.println("The general string string is an interleaving of X and Y");
+           }
+           else {
+               System.out.println("The general string is not interleaving of X and Y");
+           }
+           lab.PrintDirections();
+           input = next.nextInt();
+           break;
+        case 8:
+           Scanner eight = new Scanner(System.in);
+           System.out.println("Enter the first string");
+           String a = eight.nextLine();
+           System.out.println("Enter the second string");
+           String b = eight.nextLine();
         
            System.out.println(lab.CountString(a, b));
-           String lol = "ACBCDBAA";
+           lab.PrintDirections();
+           input = next.nextInt();  
+           break;
+        case 9: 
+           Scanner nine = new Scanner(System.in);
+           System.out.println("Enter a String");
+           String lol = nine.nextLine();
            int len = lol.length();
     
            System.out.println("The minimum number of deletions required is " +
                                    lab.MinDel(lol, len));
-           input = next.nextInt();                        
+           lab.PrintDirections();
+           input = next.nextInt();   
            break;
-        case 8:
-           int[] Arr = { 7, 3, 1, 5, 4, 8 };
+        case 10:
+           System.out.println("Enter size for array you wish to fill");
+           Scanner ten = new Scanner(System.in);
+           int size = ten.nextInt();
+           int i = 0;
+           int[] Arr = new int[size];
+           while(i < size){
+              System.out.println("Enter number to fill array: ");
+              int inputt = ten.nextInt();
+              Arr[i] = inputt;
+              i++;
+           }
     
            if (lab.partition(Arr)) {
-               System.out.println("Set can be partitioned");
+               System.out.println("This array can be partitioned");
            }
            else {
-               System.out.println("Set cannot be partitioned");
+               System.out.println("This array cannot be partitioned");
            }
+           lab.PrintDirections();
            input = next.nextInt();
            break;
         default:
+           lab.PrintDirections();
+
            input = next.nextInt();
         }
         }
 
     }
     
-    
 	}
 
 class lab{
+    public static void PrintDirections(){
+        System.out.println("1-Manipulate a string so that it matches a given pattern 2- find out how many binary combinations there can be by replacing a ? in a given string");
+        System.out.println("3 - find the longest balanced parenthesis pair in a given string 4- reverse a string using the stack");
+        System.out.println("5- Check if two strings are isomorphic 6- check if you can match two strings by inserting a single character");
+        System.out.println("7- Check if a string interleaves two substrings 8- check how many times a given string appears in another string");
+        System.out.println("9- find the minimum number of deletions to change string into a palindrome 10- check if an array can be partitioned to add up to the same value");
+    
+    }
     public static boolean StringPat(String str, int i, String pat, int j, Map<Character, String> map){
         int n = str.length();
         int m = pat.length();
